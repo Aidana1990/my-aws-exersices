@@ -1,0 +1,88 @@
+Learn how to create an Amazon Machine Image (AMI) and a volume snapshot from an EC2 instance in AWS.
+
+Part 1: Launching and Stopping an EC2 Instance
+
+Open the AWS Management Console and navigate to the EC2 Dashboard.
+
+Click on "Launch Instance".
+
+Choose the "Amazon Linux 2 AMI" (default option).
+
+Select an instance type, such as t2.micro.
+
+Click "Review and Launch" and then "Launch".
+
+Wait for the instance to be in the running state.
+
+Select your running instance.
+
+Click "Instance State" > "Stop instance".
+
+Confirm the stop action and wait for the instance to be in the stopped state.
+
+Part 2: Creating an AMI from the Stopped Instance
+
+
+Create an AMI:
+
+With your instance selected, click "Actions" > "Image and templates" > "Create Image".
+
+In the "Create Image" dialog, provide a name and description for the AMI.
+
+Click "Create Image".
+
+Monitor the AMI Creation:
+
+Go to "Images" (in the EC2 Dashboard)> "AMIs" to see the progress of the AMI creation.
+
+Wait for the status to change to "available".
+
+Part 3: Creating a Snapshot of the Volume
+
+Navigate to Volumes:
+
+In the EC2 Dashboard, go to "Elastic Block Store" > "Volumes".
+
+Create a Snapshot:
+
+Select the volume associated with your stopped instance.
+
+Click "Actions" > "Create Snapshot".
+
+Provide a description for the snapshot.
+
+Click "Create Snapshot".
+
+Monitor the Snapshot Creation:
+
+Navigate to "Elastic Block Store" > "Snapshots" to check the progress of the snapshot creation.
+
+Wait for the status to change to "completed".
+
+Part 4: Clean Up Resources
+
+Terminate the EC2 Instance:
+
+In the EC2 Dashboard, go to "Instances".
+
+Select your instance, click "Instance State" > "Terminate".
+
+Delete the Volume and Snapshot:
+
+Navigate to "Elastic Block Store" > "Volumes" and check if the volume has been deleted. Verify if there are any additional volumes that were attached to the instance. If so, select them and delete them manually by clicking "Actions" > "Delete Volume".
+
+Go to "Snapshots" and delete the snapshot created.
+
+Deregister the AMI:
+
+Navigate to "Images" > "AMIs".
+
+Select the AMI you created, click "Actions" > "Deregister".
+
+Delete the AMI Snapshot:
+
+In "Snapshots", find the snapshot associated with the AMI and delete it.
+
+In your terminal on the Wedevx platform, run the 'pwd' command and verify that you are in the /home/user directory.
+
+

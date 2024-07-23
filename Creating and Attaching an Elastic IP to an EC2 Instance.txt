@@ -1,0 +1,85 @@
+Creating and Attaching an Elastic IP to an EC2 Instance
+
+Log in with your AWS credentials.
+
+In the AWS Management Console, type "EC2" in the search bar and select EC2 to open the EC2 Dashboard.
+
+Launch an EC2 Instance:
+
+Click on "Launch Instance".
+
+Choose the "Amazon Linux 2 AMI" (default option).
+
+Select an instance type, such as t2.micro.
+
+Click "Review and Launch" and then "Launch".
+
+Wait for the instance to be in the running state.
+
+Allocate a New Elastic IP Address:
+
+In the EC2 Dashboard, scroll down to the Network & Security section on the left-hand menu and click on Elastic IPs.
+
+Click the Allocate Elastic IP address button.
+
+In the "Allocate Elastic IP address" dialog, select Amazon's pool of IPv4 addresses.
+
+Click Allocate. You will see a success message along with the details of your newly allocated Elastic IP address.
+
+Associate the Elastic IP Address with an EC2 Instance:
+
+After allocating the Elastic IP, you will see the new IP listed in your Elastic IPs page.
+
+Select the newly allocated Elastic IP address by checking the box next to it.
+
+Click on the Actions dropdown menu and select Associate Elastic IP address.
+
+In the "Associate Elastic IP address" dialog, choose the Instance option.
+
+Select the EC2 instance you want to associate the Elastic IP with from the Instance dropdown menu.
+
+Ensure the private IP address of the instance is correct (you can usually leave the default value).
+
+Click Associate.
+
+Verify the Association:
+
+Go to the Instances section in the EC2 Dashboard.
+
+Select the instance you associated with the Elastic IP.
+
+Check the details section at the bottom. You should see the new Elastic IP listed as the public IP address for the instance.
+
+You have successfully created an Elastic IP and attached it to your EC2 instance. This Elastic IP address can now be used to connect to your EC2 instance via SSH or other services requiring a stable public IP.
+
+Notes:
+
+Elastic IP addresses are static IP addresses designed for dynamic cloud computing. They remain associated with your AWS account until you explicitly release them.
+
+Be aware that there might be additional costs associated with Elastic IPs if they are not associated with any running instance.
+
+Deleting an Elastic IP and Disassociating It from an EC2 Instance:
+
+Disassociate the Elastic IP Address:
+
+In the EC2 Dashboard, scroll down to the Network & Security section on the left-hand menu and click on Elastic IPs.
+
+Select the Elastic IP address you want to disassociate by checking the box next to it.
+
+Click on the Actions dropdown menu and select Disassociate Elastic IP address.
+
+In the "Disassociate Elastic IP address" dialog, click Disassociate.
+
+Release the Elastic IP Address:
+
+After disassociating the Elastic IP address, it will still be allocated to your account.
+
+Select the Elastic IP address again by checking the box next to it.
+
+Click on the Actions dropdown menu and select Release Elastic IP address.
+
+In the "Release Elastic IP address" dialog, click Release. You will see a confirmation message indicating that the Elastic IP address has been released.
+
+In your terminal on the Wedevx platform, run the 'pwd' command and verify that you are in the /home/user directory.
+
+

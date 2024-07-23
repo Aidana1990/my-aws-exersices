@@ -1,0 +1,107 @@
+Step 1: Log in to AWS Management Console
+
+Open a web browser and go to the AWS Management Console.
+
+Sign in with your AWS account credentials.
+
+Step 2: Navigate to EC2 Dashboard
+
+In the AWS Management Console, type "EC2" in the search bar at the top.
+
+Click on "EC2" from the drop-down list to open the EC2 Dashboard.
+
+Step 3: Launch Instance
+
+On the EC2 Dashboard, click on the orange "Launch Instance" button.
+
+Step 4: Name Your Instance
+
+On the "Launch an instance" page, give your instance a name. For example, test-instance.
+
+Step 5: Choose an Amazon Machine Image (AMI)
+
+Select the Amazon Linux 2 AMI (HVM), SSD Volume Type which is free-tier eligible.
+
+Step 6: Choose an Instance Type
+
+Select the t2.micro instance type (free-tier eligible).
+
+Step 7: Configure Key Pair
+
+Under "Key pair (login)," select "Create new key pair."
+
+Name your key pair (e.g., test-instance-keypair).
+
+Ensure the "Key pair type" is set to RSA and "Private key file format" is set to .pem.
+
+Click the "Create key pair" button. This will download a .pem file to your computer. Keep this file secure.
+
+Step 8: Configure Network Settings
+
+Leave the "Network settings" at their default values.
+
+Under "Firewall (security groups)," select "Create security group."
+
+Ensure the rule to allow SSH traffic from Anywhere (0.0.0.0/0) is present.
+
+Step 9: Configure Storage
+
+Under "Configure storage," ensure the root volume is set to 8 GiB and the volume type is gp2 (General Purpose SSD).
+
+Step 10: Configure Advanced Details
+
+Leave all settings in the "Advanced details" section as default.
+
+Step 11: Review and Launch
+
+Review all the settings on the "Review and launch" page to ensure everything is configured correctly.
+
+Click the "Launch instance" button.
+
+Step 12: View Instances
+
+Click the "View all instances" button to go to the EC2 Dashboard and see your running instances.
+
+Your instance will be in the "pending" state initially. Wait until the state changes to "running."
+
+Connecting to Your Instance
+
+Step 13: Access Your Instance
+
+Once the instance state is "running," select your instance from the list.
+
+Note the Public IPv4 DNS address of your instance.
+
+Step 14: Connect to Your Instance via SSH
+
+Open your terminal in the wedevxPlatform.
+
+Ensure that you are in the home directory '~'.
+
+Create file (use vim or nano) called exactly the same as your key-pair.( test-instance-keypair.pem).
+
+Navigate to the directory where your key pair file is located. cd ~
+
+Use the following command to connect to your instance: ssh -i /path/to/TestInstanceKeyPair.pem ec2-user@your-instance-public-dns. Replace /path/to/TestInstanceKeyPair.pem with the path to your downloaded key pair file, and your-instance-public-dns with the Public IPv4 DNS address of your instance. Or you can to to Connect Tab in your AWS Console and copy the command in the Example: 
+
+Paste this command to your terminal in the wedevx platfrom.
+
+When prompted, type yes to confirm the connection.
+
+Example Connection Command: ssh -i ~/Downloads/TestInstanceKeyPair.pem ec2-user@ec2-203-0-113-25.compute-1.amazonaws.com
+
+If you see similar screen, it means you have successfully connected to your AWS Instance! If you have issues, make sure your key pair name matches the filename
+
+Now To avoid being charged, make sure to terminate your instance when you are done using it.
+
+Select your instance from the list.
+
+Select "Instance State" > "Terminate".
+
+Confirm the termination when prompted.
+
+In terminal:
+
+Delete your key-pair file using 'rm' command.
+
+Run the 'pwd' command and ensure that you are in the 'home/user' directory.

@@ -1,0 +1,235 @@
+1. Create an S3 Bucket
+
+Log in to AWS Management Console:
+
+Go to AWS Management Console.
+
+Navigate to S3:
+
+Search for "S3" in the services menu and click on it.
+
+Create a Bucket:
+
+Click on "Create bucket."
+
+Enter a unique bucket name (e.g., my-static-website-bucket).
+
+Choose a region (us-east-1).(in the right top corner choose us-east-1, N.Virginia)
+
+Unblock all public access key
+
+Check Warning statement " I acknowledge that the current settings might result in this bucket and the objects within becoming public".
+
+Bucket versioning: Enable
+
+Leave others as default
+
+Click "Create bucket."
+
+Green message appears that you've successfully created bucket.
+
+2. Prepare Your Website Files
+
+Creating index.html
+
+On Windows (Notepad):
+
+Open Notepad.
+
+Copy and paste the following content:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to My Static Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to My Static Website</h1>
+    <p>This is the home page of my static website hosted on AWS S3.</p>
+</body>
+</html>
+
+
+Save the file as index.html (ensure the "Save as type" is set to "All Files").
+
+
+On Mac (TextEdit):
+
+Open TextEdit.
+
+Create a new document.
+
+Paste the above content.
+
+Go to "Format" > "Make Plain Text".
+
+Save the file as index.html.
+
+Creating error.html
+
+Repeat the steps above but use the following content and save it as error.html:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            color: #ff0000;
+        }
+    </style>
+</head>
+<body>
+    <h1>404 - Page Not Found</h1>
+    <p>Sorry, the page you are looking for does not exist.</p>
+    <p><a href="index.html">Go to Home Page</a></p>
+</body>
+</html>
+
+3. Upload Website Files
+
+Go to the "Objects" Tab in you AWS Console:
+
+In your S3 bucket, go to the "Objects" tab.
+
+Upload Files:
+
+Click on "Upload."
+
+Drag and drop your index.html and error.html files or use the file picker to select them.
+
+Click "Upload."
+
+4. Configure the Bucket for Static Website Hosting
+
+Select the Bucket:
+
+Click on your newly created bucket.
+
+Enable Static Website Hosting:
+
+Go to the "Properties" tab.
+
+Scroll down to "Static website hosting."
+
+Click "Edit."
+
+Select "Enable" and choose "Host a static website."
+
+Enter index.html as the index document and error.html as the error document.
+
+Click "Save changes."
+
+Note the Website Endpoint URL:
+
+In the "Properties" tab , scroll down to "Static website hosting." and you'll find the URL which looks like http://my-static-website-bucket.s3-website-us-west-1.amazonaws.com.
+
+5. Set Bucket Policy for Public Access
+
+Go to Permissions:
+
+Go to the "Permissions" tab of your bucket.
+
+Add a Bucket Policy:
+
+Click on "Bucket policy."
+
+Use the following policy to allow public read access:
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "PublicReadGetObject",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::my-static-website-bucket/*"
+        }
+    ]
+}
+
+Replace my-static-website-bucket with your actual bucket name.
+
+Click "Save changes."
+
+6. Enable Versioning
+
+Go to Properties:
+
+Go to the "Properties" tab of your bucket.
+
+Enable Versioning:
+
+Scroll down to "Bucket Versioning."
+
+Click "Edit."
+
+Select "Enable" and click "Save changes."
+
+7. Test Your Website
+
+Access the Website:
+
+Go to the "Properties" tab.
+
+Scroll down to "Static website hosting."
+
+Copy the "Bucket website endpoint" URL.
+
+Paste the URL into your web browser to view your hosted website.
+
+Test the Error Page:
+
+Try accessing a non-existent page like http://my-static-website-bucket.s3-website-us-west-1.amazonaws.com/nonexistentpage.html to see error.html.
+
+8. Upload a New Version of a File
+
+Update Your File:
+
+Make changes to index.html (e.g., change some text).
+
+Upload the New Version:
+
+Go to the "Objects" tab of your bucket.
+
+Click "Upload."
+
+Upload the updated index.html file.
+
+Click "Upload."
+
+9. Access Previous Versions
+
+View Versions:
+
+In the "Objects" tab, click on the "Show versions" button to see all versions of your files.
+
+Copy and paste your "Bucket website endpoint" URL to this form: https://forms.gle/nFpL3CfqPBhcwgm48
+
+Once you're done, delete your S3 bucket to avoid AWS fee charges. First, delete all files inside it by checking the small box next to each file and hitting the 'Delete' button on top. When you empty your S3 bucket, you'll be able to delete it.
+
+
+In this exercise, you've successfully hosted a static website on AWS S3 with versioning enabled. Your website is accessible at a URL like http://my-static-website-bucket.s3-website-us-west-1.amazonaws.com, and you can manage different versions of your files.
+
